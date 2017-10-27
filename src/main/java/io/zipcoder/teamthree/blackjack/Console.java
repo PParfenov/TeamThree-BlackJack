@@ -116,7 +116,7 @@ public class Console {
     private static String forceDoubleInput() {
         String input;
         do {
-            System.out.print("How much do you want to bet?  ");
+            System.out.print("\nHow much do you want to bet?  ");
             input = getInput();
         } while (!isInputDouble(input) || !isInputPositive(input));
         return forceTwoDecimalDouble(input);
