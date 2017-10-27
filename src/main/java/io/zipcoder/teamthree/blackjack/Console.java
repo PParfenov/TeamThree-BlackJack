@@ -11,8 +11,23 @@ public class Console {
 
         Player userPlayer = game.getPlayer();
 
-        System.out.println("Welcome to the <BlackJack> table, "+userPlayer.getName()+"!");
-        System.out.println("You have $"+forceTwoDecimalDouble(userPlayer.getMoney().toString()));
+        System.out.println("" +
+                " ____   _            _     _            _    \n" +
+                "| __ ) | | __ _  ___| | __(_) __ _  ___| | __\n" +
+                "|    B | |/ _` |/ __| |/ /| |/  ` |/ __| |/ / \n" +
+                "| |_) || | (_| | (__| | < | | (_| | (__|   < \n" +
+                "|____/ |_|L__,_|A___|_|C_K| |J__,_|A___|_|C_K \n" +
+                "                        |__/ \n" +
+                "+--------------------------------------------+" +
+                "\n\nWelcome to the <BlackJack> table!" +
+                "\n\nWhat's your name?");
+
+        String userName = getInput();
+        userPlayer.setName(userName);
+
+        System.out.println("Hello, " + userName + "!");
+
+        System.out.println("\nYou have $"+forceTwoDecimalDouble(userPlayer.getMoney().toString()));
 
         do {
             game.start();
@@ -24,15 +39,15 @@ public class Console {
             determineWinOrLoss(userPlayer);
         } while (playerStaysForAnotherRound(userPlayer));
 
-        System.out.println("Thanks for playing! Goodbye!");
+        System.out.println("\nThanks for playing! Goodbye!");
     }
 
     private static boolean playerStaysForAnotherRound(Player userPlayer) {
         String input;
-        System.out.println("You have $" + forceTwoDecimalDouble(userPlayer.getMoney().toString()));
+        System.out.println("\nYou have $" + forceTwoDecimalDouble(userPlayer.getMoney().toString()));
         if (userPlayer.getMoney() >= 0.01) {
             do {
-                System.out.print("Stay for another round? [Yes/No]  ");
+                System.out.print("\nStay for another round? [Yes/No]  ");
                 input = getInput();
                 if (isInputYesOrNo(input))
                 {
@@ -42,7 +57,7 @@ public class Console {
 
         }
         else {
-            System.out.println("You are out of money.");
+            System.out.println("\nYou are out of money.");
         }
         return false;
     }
@@ -50,11 +65,11 @@ public class Console {
     private static void determineWinOrLoss(Player userPlayer){
 
         if (game.playerWins()) {
-            System.out.println("Player wins!");
+            System.out.println("\nPlayer wins!");
         } else {
-            System.out.println("House wins!");
+            System.out.println("\nHouse wins!");
         }
-        System.out.println("House has score: " + game.getDealer().getScore());
+        System.out.println("\nHouse has score: " + game.getDealer().getScore());
         resetPotAndDiscardHands(userPlayer);
     }
 
@@ -78,21 +93,21 @@ public class Console {
     private static String forceHitOrStay(){
         String input;
         do {
-            System.out.print("Hit or stay? ");
+            System.out.print("\nHit or stay? ");
             input = getInput();
         } while (!isInputStayOrHit(input));
         return input;
     }
 
     private static void displayDealerCardShowing(){
-        System.out.println("Dealer is showing: "+game.getDealer().getHand().get(0).getValue());
+        System.out.println("\nDealer is showing: "+game.getDealer().getHand().get(0).getValue());
     }
 
     private static void displayPlayerHandAndScore(Player userPlayer){
         for (Card card : userPlayer.getHand()) {
             System.out.println(card.toString());
         }
-        System.out.println("Your current score is: " + userPlayer.calculateScore());
+        System.out.println("\nYour current score is: " + userPlayer.calculateScore());
     }
 
     private static void playerBets(Player userPlayer){
@@ -116,7 +131,7 @@ public class Console {
     private static String forceDoubleInput() {
         String input;
         do {
-            System.out.print("How much do you want to bet?  ");
+            System.out.print("\nHow much do you want to bet?  ");
             input = getInput();
         } while (!isInputDouble(input) || !isInputPositive(input));
         return forceTwoDecimalDouble(input);
