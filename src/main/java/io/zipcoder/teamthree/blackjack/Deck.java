@@ -27,12 +27,18 @@ public class Deck {
     private void populate() {
         cards = new ArrayList<Card>();
         for (Suit suit: Suit.values()) {
-            for (int value = 1; value <= 13; value++) {
-                if (value < 10){
-                    cards.add(new Card(suit, value));
-                } else {
-                    cards.add(new Card(suit, 10));
+            for (int value = 1; value <= 13; value++)
+            {
+                if (value < 11)
+                {
+                    if (value==1)
+                        cards.add(new Card(suit, value, Card.suitSymbols[suit.ordinal()], Card.faceSymbols[0]));
+                    else
+                        cards.add(new Card(suit, value, Card.suitSymbols[suit.ordinal()], ""+value));
                 }
+                else
+                    cards.add(new Card(suit, 10, Card.suitSymbols[suit.ordinal()], Card.faceSymbols[value - 10]));
+
             }
         }
     }

@@ -3,7 +3,8 @@ package io.zipcoder.teamthree.blackjack;
 public class Card
 {
     private Suit suit;
-    private static String[] suitSymbols = {"♡", "♢", "♧", "♤"};
+    public static String[] suitSymbols = {"♡", "♢", "♧", "♤"};
+    public static String[] faceSymbols = {"A", "J", "Q", "K"};
     private Integer value;
     private String topCardRepresentation;
     private String bottomCardRepresentation;
@@ -16,17 +17,23 @@ public class Card
     public String toString(){
         return topCardRepresentation+middleCardRepresentation+bottomCardRepresentation;
     }
+    public String getTopCardRepresentation(){
+        return topCardRepresentation;
+    }
+
 
     public Card(Suit passedSuit, Integer passedValue){
         this(passedSuit, passedValue, "X");
     }
-
     public Card(Suit passedSuit, Integer passedValue, String passedSuitRepresentation){
+        this(passedSuit, passedValue, passedSuitRepresentation, "Y");
+    }
+    public Card(Suit passedSuit, Integer passedValue, String passedSuitRepresentation, String passedFaceRepresentation){
         suit=passedSuit;
         value=passedValue;
         topCardRepresentation=" ----- \n"+
-                              "|X"+passedSuitRepresentation+"   |\n";
-        bottomCardRepresentation="|   X"+passedSuitRepresentation+"|\n"+
+                              "|"+String.format("%s%-4s", passedFaceRepresentation, passedSuitRepresentation)+"|\n";
+        bottomCardRepresentation="|"+String.format("%4s%s", passedFaceRepresentation, passedSuitRepresentation)+"|\n"+
                                  " ----- \n";
     }
 
