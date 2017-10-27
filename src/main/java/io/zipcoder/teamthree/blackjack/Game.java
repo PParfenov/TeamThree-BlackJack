@@ -10,10 +10,10 @@ public class Game {
     private Player dealer;
     private Double pot;
 
-    public Game (){
-        player = new Player("Amy");
+    public Game(){
+        player = new Player();
         deck = new Deck();
-        dealer = new Player("DealThis");
+        dealer = new Player("Dealer");
         deck.shuffle();
         pot = 0.0;
     }
@@ -53,7 +53,7 @@ public class Game {
         player.calculateScore();
         dealer.calculateScore();
 
-        if((player.getScore().equals(21) && !dealer.getScore().equals(21)) ||
+        if(     (player.getScore().equals(21) && !dealer.getScore().equals(21)) ||
                 (player.getScore()<21 && dealer.getScore() < player.getScore()) ||
                 (player.getScore() < 21 && dealer.getScore() > 21)) {
             //Player wins
@@ -67,12 +67,6 @@ public class Game {
         Card card = deck.getCard();
         playerToReceiveCard.addToHand(card);
     }
-
-//    public void hitPlayer(Player player) {
-//        if (Console.hit() == true) {
-//            dealCard(player);
-//        }
-//    }
 
     public void dealerHitUntilFinished() {
         while (dealer.calculateScore() <= 17)
