@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Console {
 
+    private static final double MIN_BET_ALLOWED=0.01;
+
     private static Game game = new Game();
     private static Scanner scanner = new Scanner (System.in);
 
@@ -11,16 +13,16 @@ public class Console {
 
         Player userPlayer = game.getPlayer();
 
-        System.out.println("" +
+        System.out.print("" +
                 " ____   _            _     _            _    \n" +
                 "| __ ) | | __ _  ___| | __(_) __ _  ___| | __\n" +
-                "|    B | |/ _` |/ __| |/ /| |/  ` |/ __| |/ / \n" +
+                "|    \\ | |/ _` |/ __| |/ /| |/  ` |/ __| |/ / \n" +
                 "| |_) || | (_| | (__| | < | | (_| | (__|   < \n" +
-                "|____/ |_|L__,_|A___|_|C_K| |J__,_|A___|_|C_K \n" +
+                "|____/ |_|\\__,_|\\___|_|\\_\\| |\\__,_|\\___|_|\\_\\ \n" +
                 "                        |__/ \n" +
                 "+--------------------------------------------+" +
                 "\n\nWelcome to the <BlackJack> table!" +
-                "\n\nWhat's your name?");
+                "\n\nWhat's your name? ");
 
         String userName = getInput();
         userPlayer.setName(userName);
@@ -100,7 +102,7 @@ public class Console {
     }
 
     private static void displayDealerCardShowing(){
-        System.out.println("\nDealer is showing: "+game.getDealer().getHand().get(0).getValue());
+        System.out.println("\nDealer is showing:\n"+game.getDealer().getHand().get(0).toString());
     }
 
     private static void displayPlayerHandAndScore(Player userPlayer){
@@ -149,7 +151,7 @@ public class Console {
     }
 
     public static boolean isInputPositive(String passedString){
-        return Double.valueOf(passedString)>0;
+        return Double.valueOf(passedString)>=MIN_BET_ALLOWED;
     }
 
     public static boolean isInputDouble(String passedString)
