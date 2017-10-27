@@ -32,7 +32,7 @@ public class Card
         suit=passedSuit;
         value=passedValue;
         topCardRepresentation=" ----- \n"+
-                              "|"+String.format("%s%-4s", passedFaceRepresentation, passedSuitRepresentation)+"|\n";
+                              "|"+String.format("%2s%-3s", passedFaceRepresentation, passedSuitRepresentation)+"|\n";
         bottomCardRepresentation="|"+String.format("%4s%s", passedFaceRepresentation, passedSuitRepresentation)+"|\n"+
                                  " ----- \n";
     }
